@@ -18,7 +18,7 @@ setup(
     author_email="mrapacz+ntgen@protonmail.com",
     url="https://github.com/mrapacz/ntgen",
     license="MIT",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude=("tests",)),
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
@@ -27,5 +27,5 @@ setup(
         "Topic :: Software Development",
     ],
     entry_points={"console_scripts": ["ntgen=ntgen.__main__:console_entry"]},
-    install_requires=["python_version >= '3.7'"],
+    install_requires=["python_version >= '3.7'", "pyannotate == 1.2.0", "typed-argument-parser == 1.4",],
 )
