@@ -95,6 +95,13 @@ You'll need to be running Python >= 3.7.
 ```bash
 pip install ntgen
 ```
+Verify that the latest package version was installed correctly:
+```python
+>>> import ntgen
+>>> ntgen.__version__
+'0.1.0'
+
+```
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
