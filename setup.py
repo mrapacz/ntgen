@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name="ntgen",
-    version="0.0.1",
+    version="0.1.0",
     description=("ntgen: generate your NamedTuple definition"),
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
