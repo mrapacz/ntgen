@@ -57,7 +57,7 @@ def _render_nt_definition(nt_definition: NT, config: Config) -> str:
     return "".join(
         (
             _render_subtuples(nt_definition, config=config),
-            "\n\n",
+            "\n",
             _render_signature(nt_definition),
             _render_attributes(nt_definition),
             "\n",
