@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import Any
 from typing import Dict
 from typing import List
@@ -12,6 +10,7 @@ from pyannotate_runtime.collect_types import InternalType
 from pyannotate_runtime.collect_types import resolve_type
 
 from ntgen.config import Config
+from ntgen.config import IS_PY_37_COMPATIBLE
 from ntgen.utils import normalize_class_name
 from ntgen.utils import normalize_field_name
 
@@ -24,25 +23,29 @@ class NT(NamedTuple):
     may be created using a direct class initialization or by parsing a dictionary using the parse_dict class method.
     """
 
-    attrs: List[Attribute]  # type: ignore
+    attrs: List["Attribute"]  # type: ignore
     name: str
 
     def __repr__(self) -> str:
         """Format the structure name to be a Pythonic class identifier."""
         return normalize_class_name(self.name)
 
+    def repr_type_hint(self) -> str:
+        """Return a string representing a type hint for the attribute."""
+        return f"'{repr(self)}'"
+
     @property
-    def nt_attrs(self) -> List[Attribute]:
+    def nt_attrs(self) -> List["Attribute"]:
         """Return a list of all the 'user defined' type attributes of the data structure."""
         return [attr for attr in self.attrs if attr.is_user_defined]
 
     @property
-    def builtin_type_attrs(self) -> List[Attribute]:
+    def builtin_type_attrs(self) -> List["Attribute"]:
         """Return a list of all the builtin type attributes in the data structure."""
         return [attr for attr in self.attrs if not attr.is_user_defined]
 
     @classmethod
-    def parse_dict(cls, data: Dict, name: str, config: Config, level: int = 0) -> Optional[NT]:
+    def parse_dict(cls, data: Dict, name: str, config: Config, level: int = 0) -> Optional["NT"]:
         """
         Parse a given dictionary to identify future NamedTuple metadata.
 
@@ -100,6 +103,9 @@ class Attribute(NamedTuple):
 
         if isinstance(self.type, type):
             return self.type.__name__
+
+        if isinstance(self.type, NT) and not IS_PY_37_COMPATIBLE:
+            return f"'{repr(self.type)}'"
 
         return repr(self.type)
 

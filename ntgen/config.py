@@ -1,7 +1,8 @@
-from __future__ import annotations
-
+import sys
 from typing import NamedTuple
 from typing import Optional
+
+IS_PY_37_COMPATIBLE = sys.version_info.major == 3 and sys.version_info.minor >= 7
 
 
 class Config(NamedTuple):

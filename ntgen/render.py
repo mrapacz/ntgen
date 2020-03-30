@@ -32,7 +32,7 @@ def _render_constructor(nt_definition: NT) -> str:
 
     indents_statements = (
         (1, "@classmethod"),
-        (1, f"def from_dict(cls, data: Dict) -> {nt_definition}:"),
+        (1, f"def from_dict(cls, data: Dict[str, Any]) -> {nt_definition.repr_type_hint()}:"),
         (2, f"return {nt_definition}("),
         *[(3, param) for param in param_assignments],
         (2, ")"),
@@ -43,7 +43,7 @@ def _render_constructor(nt_definition: NT) -> str:
 
 def _render_as_dict_method() -> str:
     indents_statements = (
-        (1, f"def as_dict(self) -> Dict:"),
+        (1, f"def as_dict(self) -> Dict[str, Any]:"),
         (2, f"return {{"),
         (3, f'name: (value.as_dict() if hasattr(value, "as_dict") else value)'),
         (3, f"for name, value in self._asdict().items()"),
