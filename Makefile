@@ -10,4 +10,4 @@ install-hooks:
 
 .PHONY: clean
 clean:
-	rm -rf .coverage .mypy_cache .pytest_cache __pycache__ ntgen.egg-info .tox
+	rm -rf build .coverage .mypy_cache .pytest_cache __pycache__ ntgen.egg-info .tox

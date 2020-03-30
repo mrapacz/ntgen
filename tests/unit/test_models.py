@@ -42,18 +42,30 @@ class TestAttribute:
             )
             mock_normalize_field_name.assert_called_once()
 
+    @pytest.fixture(params=[True, False])
+    def any_bool(self, request):
+        return request.param
+
+    @pytest.fixture(params=[True, False])
+    def patch_is_py_37_compatible(self, request):
+        with mock.patch(
+            "ntgen.models.IS_PY_37_COMPATIBLE", request.param,
+        ):
+            yield
+
     @pytest.mark.parametrize(
-        ("sample_attribute", "expected_type_hint"),
+        ("patch_is_py_37_compatible", "sample_attribute", "expected_type_hint"),
         (
-            (1, "int"),
-            ("string", "str"),
-            (None, "None"),
-            ({1: "1"}, "Dict[int, str]"),
-            (pytest.lazy_fixture("sample_person_nt"), "Person"),
+            (pytest.lazy_fixture("any_bool"), 1, "int"),
+            (pytest.lazy_fixture("any_bool"), "string", "str"),
+            (pytest.lazy_fixture("any_bool"), None, "None"),
+            (pytest.lazy_fixture("any_bool"), {1: "1"}, "Dict[int, str]"),
+            (True, pytest.lazy_fixture("sample_person_nt"), "Person"),
+            (False, pytest.lazy_fixture("sample_person_nt"), "'Person'"),
         ),
-        indirect=["sample_attribute"],
+        indirect=["patch_is_py_37_compatible", "sample_attribute"],
     )
-    def test_repr_type_hint(self, sample_attribute: Attribute, expected_type_hint: str):
+    def test_repr_type_hint(self, patch_is_py_37_compatible, sample_attribute: Attribute, expected_type_hint: str):
         assert sample_attribute.repr_type_hint == expected_type_hint
 
     @pytest.mark.parametrize(
