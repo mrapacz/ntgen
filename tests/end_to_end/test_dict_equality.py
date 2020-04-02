@@ -17,7 +17,7 @@ class TestGeneratedDictionaryIsEquivalentWithOriginal:
         main_object_name = normalize_class_name(submodule_name)
         nt_code = generate_from_dict(data=example_dict_object, name=main_object_name, insert_as_dict=True, insert_from_dict=True)
 
-        with module_path.open("a") as f:
+        with open(module_path, "a") as f:
             f.write(nt_code)
 
         test_module_obj = importlib.import_module(str(tmp_module / submodule_name).replace("/", "."))
