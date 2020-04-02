@@ -39,7 +39,7 @@ def normalize_class_name(name: str) -> str:
     return "".join([fragment.capitalize() for fragment in normalize_field_name(name).split("_")])
 
 
-def replace_leading_underscores(name: str, prefix=None) -> str:
+def replace_leading_underscores(name: str, prefix: Optional[str] = None) -> str:
     """
     Replace leading underscores with a given prefix.
 

@@ -45,7 +45,7 @@ class NT(NamedTuple):
         return [attr for attr in self.attrs if not attr.is_user_defined]
 
     @classmethod
-    def parse_dict(cls, data: Dict, name: str, config: Config, level: int = 0) -> Optional["NT"]:
+    def parse_dict(cls, data: Dict[str, Any], name: str, config: Config, level: int = 0) -> Optional["NT"]:
         """
         Parse a given dictionary to identify future NamedTuple metadata.
 
