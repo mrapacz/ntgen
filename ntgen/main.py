@@ -16,17 +16,17 @@ class ArgumentParser(TypedArgumentParser):
 
     snake_case: bool = True  # Convert the NamedTuple field names to snake_case
     camel_case: bool = True  # Convert the NamedTuple class names to CamelCase
-    from_dict: bool = False  # Insert generic methods that will allow for parsing of the analyzed data structures
-    as_dict: bool = False  # Insert generic methods allowing for dumping the nested NamedTuple hierarchy to a dict
+    add_from_dict: bool = False  # Insert generic methods that will allow for parsing of the analyzed data structures
+    add_as_dict: bool = False  # Insert generic methods allowing for dumping the nested NamedTuple hierarchy to a dict
     max_level: Optional[int] = None  # Specify the max nesting level of the NamedTuple
 
-    def add_arguments(self):
+    def add_arguments(self) -> None:
         """Make the 'input' argument positional."""
         self.add_argument("input")
         self.add_argument("-s", "--snake-case", action="store_false")
         self.add_argument("-c", "--camel-case", action="store_false")
-        self.add_argument("-f", "--from-dict", action="store_true")
-        self.add_argument("-a", "--as-dict", action="store_true")
+        self.add_argument("-f", "--add-from-dict", action="store_true")
+        self.add_argument("-a", "--add-as-dict", action="store_true")
 
 
 def main() -> None:
@@ -44,8 +44,8 @@ def main() -> None:
         name=name,
         snake_case=args.snake_case,
         camel_case=args.camel_case,
-        insert_from_dict=args.from_dict,
-        insert_as_dict=args.as_dict,
+        insert_from_dict=args.add_from_dict,
+        insert_as_dict=args.add_as_dict,
         max_level=args.max_level,
     )
 

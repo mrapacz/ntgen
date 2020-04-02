@@ -1,3 +1,4 @@
+from typing import Any
 from typing import Dict
 from typing import Optional
 
@@ -8,8 +9,8 @@ from ntgen.render import render_nt_definition
 
 
 def generate_from_dict(
-    data: Dict,
-    name="NTGenNamedTuple",
+    data: Dict[str, Any],
+    name: str = "NTGenNamedTuple",
     snake_case: bool = True,
     camel_case: bool = True,
     insert_as_dict: bool = False,
