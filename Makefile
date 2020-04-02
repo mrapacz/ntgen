@@ -1,10 +1,18 @@
+.PHONY: dev
+dev:
+	pip install -r requirements-dev.txt
+
 .PHONY: test
-test:
-	tox
+test: dev
+	tox -e unit
+
+.PHONY: coverage
+coverage: dev
+	tox -e coverage
 
 
 .PHONY: install-hooks
-install-hooks:
+install-hooks: dev
 	tox -e install-hooks
 
 
