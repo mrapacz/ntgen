@@ -10,6 +10,9 @@ test: dev
 coverage: dev
 	tox -e coverage
 
+.PHONY: submit_coverage
+submit_coverage: coverage
+	coveralls
 
 .PHONY: install-hooks
 install-hooks: dev
