@@ -15,7 +15,7 @@ class TestGeneratedDictionaryIsEquivalentWithOriginal:
         module_path = copyfile(self.module_template_path, tmp_module / f"{submodule_name}.py")
 
         main_object_name = normalize_class_name(submodule_name)
-        nt_code = generate_from_dict(data=example_dict_object, name=main_object_name, insert_as_dict=True, insert_from_dict=True)
+        nt_code = generate_from_dict(data=example_dict_object, name=main_object_name, insert_as_dict=True, insert_from_dict=True,)
 
         with module_path.open("a") as f:
             f.write(nt_code)

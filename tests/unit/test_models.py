@@ -16,7 +16,7 @@ def sample_person_nt():
             Attribute(original_name="age", type=int, value=24),
             Attribute(
                 original_name="address",
-                type=NT(attrs=[Attribute("city", str, "Warsaw"), Attribute("street", str, "Biała 13")], name="address",),
+                type=NT(attrs=[Attribute("city", str, "Warsaw"), Attribute("street", str, "Biała 13"),], name="address",),
                 value={"city": "Warsaw", "street": "Biała 13"},
             ),
         ],
@@ -65,7 +65,9 @@ class TestAttribute:
         ),
         indirect=["patch_is_py_37_compatible", "sample_attribute"],
     )
-    def test_repr_type_hint(self, patch_is_py_37_compatible, sample_attribute: Attribute, expected_type_hint: str):
+    def test_repr_type_hint(
+        self, patch_is_py_37_compatible, sample_attribute: Attribute, expected_type_hint: str,
+    ):
         assert sample_attribute.repr_type_hint == expected_type_hint
 
     @pytest.mark.parametrize(
@@ -86,7 +88,7 @@ class TestNT:
         assert sample_person_nt.nt_attrs == [
             Attribute(
                 original_name="address",
-                type=NT(attrs=[Attribute("city", str, "Warsaw"), Attribute("street", str, "Biała 13")], name="address",),
+                type=NT(attrs=[Attribute("city", str, "Warsaw"), Attribute("street", str, "Biała 13"),], name="address",),
                 value={"city": "Warsaw", "street": "Biała 13"},
             )
         ]
