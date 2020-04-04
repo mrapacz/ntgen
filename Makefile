@@ -27,8 +27,12 @@ release: clean
 	read
 	twine upload dist/*
 
-
+.PHONY: acceptance
+acceptance: clean
+	pip install .
+	ntgen acceptance/apartment.json --out acceptance/apartment_actual.txt
+	diff acceptance/apartment_actual.txt acceptance/apartment_expected.txt
 
 .PHONY: clean
 clean:
-	rm -rf build dist .coverage .mypy_cache .pytest_cache __pycache__ ntgen.egg-info .tox
+	rm -rf build dist .coverage .mypy_cache .pytest_cache __pycache__ ntgen.egg-info .tox acceptance/*actual.txt

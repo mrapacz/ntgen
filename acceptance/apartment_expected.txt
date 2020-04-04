@@ -1,0 +1,19 @@
+class Address(NamedTuple):
+    borough: str
+    city: str
+    house_number: str
+    latitude: float
+    longitude: float
+    postal_code: str
+    street_name: str
+    area: str
+
+
+class Apartment(NamedTuple):
+    id: str
+    type: str
+    is_available: bool
+    country_code: str
+    address: Address
+    attachments: str
+    ts: int

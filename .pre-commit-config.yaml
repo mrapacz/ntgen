@@ -17,8 +17,10 @@ repos:
     hooks:
       - id: check-json
       - id: pretty-format-json
+        exclude: '^acceptance'
       - id: check-merge-conflict
       - id: end-of-file-fixer
+        exclude: '^acceptance'
       - id: requirements-txt-fixer
       - id: trailing-whitespace
 

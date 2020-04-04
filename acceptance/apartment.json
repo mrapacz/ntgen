@@ -1,0 +1,18 @@
+{
+    "id": "1234-1234",
+    "type": "living",
+    "isAvailable": true,
+    "countryCode": "DE",
+    "address": {
+        "borough": "Dulsberg",
+        "city": "Hamburg",
+        "houseNumber": "2",
+        "latitude": 53.587485,
+        "longitude": 10.063215,
+        "postalCode": "22049",
+        "streetName": "Nordschleswiger Stra\u00dfe",
+        "area": "Hamburg"
+    },
+    "_attachments": "attachments/",
+    "_ts": 15828103462
+}

@@ -18,7 +18,7 @@ setup(
     author_email="mrapacz+ntgen@protonmail.com",
     url="https://github.com/mrapacz/ntgen",
     license="MIT",
-    packages=setuptools.find_packages(exclude=("tests",)),
+    packages=setuptools.find_packages(exclude=("tests", "acceptance")),
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
