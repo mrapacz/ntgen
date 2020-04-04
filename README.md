@@ -2,6 +2,7 @@
 ![CircleCI](https://img.shields.io/circleci/build/github/mrapacz/ntgen)
 ![PyPI - Package Version](https://img.shields.io/pypi/v/ntgen)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ntgen.svg)
+[![Coverage Status](https://coveralls.io/repos/github/mrapacz/ntgen/badge.svg?branch=master)](https://coveralls.io/github/mrapacz/ntgen?branch=master)
 ![PyPI - License](https://img.shields.io/pypi/l/ntgen)
 
 Generate NamedTuple definitions with typehints based on your data automatically.
