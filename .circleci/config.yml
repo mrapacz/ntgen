@@ -10,6 +10,7 @@ jobs:
           command: |
             echo "export PATH=$HOME/.local/bin:$PATH" >> $BASH_ENV
             source $BASH_ENV
+            make dev
             make test
   build-py36:
     <<: *base_template
@@ -29,6 +30,7 @@ jobs:
             echo "repo_token: ${COVERALLS_TOKEN}" > .coveralls.yml
             echo "export PATH=$HOME/.local/bin:$PATH" >> $BASH_ENV
             source $BASH_ENV
+            make dev
             make submit_coverage
   build-acceptance:
     <<: *base_template

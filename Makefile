@@ -3,11 +3,11 @@ dev:
 	pip install -r requirements-dev.txt
 
 .PHONY: test
-test: dev
+test:
 	tox -e unit
 
 .PHONY: coverage
-coverage: dev
+coverage:
 	tox -e coverage
 
 .PHONY: submit_coverage
@@ -15,7 +15,7 @@ submit_coverage: coverage
 	coveralls
 
 .PHONY: install-hooks
-install-hooks: dev
+install-hooks:
 	tox -e install-hooks
 
 .PHONY: release
