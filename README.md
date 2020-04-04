@@ -103,7 +103,7 @@ class Character(NamedTuple):
 
 ```
 ## Installation
-You'll need to be running Python >= 3.7.
+You'll need to be running Python >= 3.6.
 ```bash
 pip install ntgen
 ```
