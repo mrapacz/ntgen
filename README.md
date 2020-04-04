@@ -1,9 +1,9 @@
 # ntgen - named tuple generator
-![CircleCI](https://img.shields.io/circleci/build/github/mrapacz/ntgen)
-![PyPI - Package Version](https://img.shields.io/pypi/v/ntgen)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ntgen.svg)
+[![CircleCI](https://img.shields.io/circleci/build/github/mrapacz/ntgen)](https://circleci.com/gh/mrapacz/ntgen)
+[![PyPI - Package Version](https://img.shields.io/pypi/v/ntgen)](https://pypi.org/project/ntgen/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ntgen.svg)](https://pypi.org/project/ntgen/)
 [![Coverage Status](https://coveralls.io/repos/github/mrapacz/ntgen/badge.svg?branch=master)](https://coveralls.io/github/mrapacz/ntgen?branch=master)
-![PyPI - License](https://img.shields.io/pypi/l/ntgen)
+[![PyPI - License](https://img.shields.io/pypi/l/ntgen)](LICENSE)
 
 Generate NamedTuple definitions with typehints based on your data automatically.
 If you've ever felt like preparing NamedTuple skeletons for any json data you're dealing with is tedious and could be
