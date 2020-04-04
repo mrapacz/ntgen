@@ -1,4 +1,5 @@
 # ntgen - named tuple generator
+![CircleCI](https://img.shields.io/circleci/build/github/mrapacz/ntgen)
 ![PyPI - Package Version](https://img.shields.io/pypi/v/ntgen)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ntgen.svg)
 ![PyPI - License](https://img.shields.io/pypi/l/ntgen)
