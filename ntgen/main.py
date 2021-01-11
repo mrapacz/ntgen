@@ -1,37 +1,45 @@
+import argparse
 import json
 from pathlib import Path
-from typing import Optional
-
-from tap import Tap as TypedArgumentParser
 
 from ntgen import generate_from_dict
 
 
-class ArgumentParser(TypedArgumentParser):
-    """Generate NamedTuple definitions with typehints based on your data automatically."""
+def parse_args():
+    """Define CLI args for the ntgen entrypoint."""
+    parser = argparse.ArgumentParser("ntgen")
 
-    input: str  # Json file containing an object with the data to analyzed
-    out: Optional[str] = None  # Destination file to write the Python code to
-    name: Optional[str] = None  # Name of the main NamedTuple, if not passed, it will be inferred from the input filename
+    parser.add_argument("input", help="JSON file containing an object with the data to analyzed")
+    parser.add_argument("-o", "--out")
+    parser.add_argument("-s", "--snake-case", action="store_false", help="Convert the NamedTuple field names to snake_case")
+    parser.add_argument("-c", "--camel-case", action="store_false", help="Convert the NamedTuple class names to CamelCase")
+    parser.add_argument(
+        "-f",
+        "--add-from-dict",
+        action="store_true",
+        help="Insert generic methods that will allow for parsing of the analyzed data structures",
+    )
+    parser.add_argument(
+        "-a",
+        "--add-as-dict",
+        action="store_true",
+        help="Insert generic methods allowing for dumping the nested NamedTuple hierarchy to a dict",
+    )
 
-    snake_case: bool = True  # Convert the NamedTuple field names to snake_case
-    camel_case: bool = True  # Convert the NamedTuple class names to CamelCase
-    add_from_dict: bool = False  # Insert generic methods that will allow for parsing of the analyzed data structures
-    add_as_dict: bool = False  # Insert generic methods allowing for dumping the nested NamedTuple hierarchy to a dict
-    max_level: Optional[int] = None  # Specify the max nesting level of the NamedTuple
+    parser.add_argument(
+        "-n",
+        "--name",
+        default=None,
+        help="Name of the main NamedTuple, if not passed, it will be inferred from the input filename",
+    )
+    parser.add_argument("--max-level", default=None)
 
-    def configure(self) -> None:
-        """Make the 'input' argument positional."""
-        self.add_argument("input")
-        self.add_argument("-s", "--snake-case", action="store_false")
-        self.add_argument("-c", "--camel-case", action="store_false")
-        self.add_argument("-f", "--add-from-dict", action="store_true")
-        self.add_argument("-a", "--add-as-dict", action="store_true")
+    return parser.parse_args()
 
 
 def main() -> None:
     """Parse arguments and execute ntgen when rune form the command line interface."""
-    args = ArgumentParser().parse_args()
+    args = parse_args()
 
     input_file = Path(args.input)
     with input_file.open() as f:
