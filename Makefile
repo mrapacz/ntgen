@@ -12,7 +12,7 @@ coverage:
 
 .PHONY: submit_coverage
 submit_coverage: coverage
-	coveralls
+	poetry run coveralls
 
 .PHONY: install-hooks
 install-hooks:
