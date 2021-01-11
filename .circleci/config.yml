@@ -40,7 +40,7 @@ jobs:
   build-acceptance:
     <<: *base_template
     steps:
-      - checkout
+      - setup
       - run:
           command: make acceptance
 workflows:
