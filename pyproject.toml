@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ntgen"
-version = "0.2.0"
+version = "0.3.0"
 description = "named tuple generator"
 authors = ["Maciej Rapacz <mmrapacz@protonmail.ch>"]
 license = "MIT"
