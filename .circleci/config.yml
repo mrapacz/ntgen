@@ -4,7 +4,7 @@ jobs:
   base-template: &base_template
     docker:
       - image: python:3.8
-    steps:
+    steps: &base_cmds
       - checkout
       - run:
           command: |
@@ -22,7 +22,8 @@ jobs:
   build-coverage:
     <<: *base_template
     steps:
-      - checkout
+      *base_cmds
+      - <: *base_cmds
       - run:
           command: |
             echo "repo_token: ${COVERALLS_TOKEN}" > .coveralls.yml
