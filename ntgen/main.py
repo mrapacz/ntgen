@@ -32,7 +32,7 @@ def parse_args():
         default=None,
         help="Name of the main NamedTuple, if not passed, it will be inferred from the input filename",
     )
-    parser.add_argument("--max-level", default=None)
+    parser.add_argument("--max-level", default=None, help="Specify the max nesting level of the NamedTuple")
 
     return parser.parse_args()
 
