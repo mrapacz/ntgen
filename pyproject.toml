@@ -12,6 +12,7 @@ typed-argument-parser = "^1.6.1"
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.1"
 ipython = "^7.19.0"
+pre-commit = "^2.9.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
