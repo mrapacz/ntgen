@@ -28,10 +28,8 @@ release: clean
 	twine upload dist/*
 
 .PHONY: acceptance
-acceptance: clean
-	poetry install --no-dev
-	poetry run ntgen acceptance/apartment.json --out acceptance/apartment_actual.txt
-	diff acceptance/apartment_actual.txt acceptance/apartment_expected.txt
+acceptance:
+	tox -e acceptance
 
 .PHONY: clean
 clean:
