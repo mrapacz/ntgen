@@ -12,13 +12,17 @@ class TestMain:
     @pytest.fixture(autouse=True, params=[{}])
     def patch_json_file_contents(self, request):
         with mock.patch("ntgen.main.Path.open"), mock.patch(
-            "ntgen.main.json.load", return_value=request.param,
+            "ntgen.main.json.load",
+            return_value=request.param,
         ):
             yield
 
     @pytest.fixture(autouse=True)
     def patch_open(self):
-        with mock.patch("ntgen.main.open", mock_open(),) as patch_write:
+        with mock.patch(
+            "ntgen.main.open",
+            mock_open(),
+        ) as patch_write:
             yield patch_write
 
     @pytest.fixture(autouse=True)
@@ -39,7 +43,8 @@ class TestMain:
             "max_level": None,
         }
         with mock.patch(
-            "ntgen.main.ArgumentParser.parse_args", return_value=argparse.Namespace(**{**defaults, **request.param}),
+            "ntgen.main.ArgumentParser.parse_args",
+            return_value=argparse.Namespace(**{**defaults, **request.param}),
         ):
             yield
 
@@ -92,7 +97,11 @@ class TestMain:
         indirect=["patch_parsed_args", "patch_json_file_contents"],
     )
     def test_main_passes_args_to_generate_correctly(
-        self, patch_generate_from_dict, patch_parsed_args, patch_json_file_contents, expected_kwargs,
+        self,
+        patch_generate_from_dict,
+        patch_parsed_args,
+        patch_json_file_contents,
+        expected_kwargs,
     ):
         main()
         patch_generate_from_dict.assert_called_once_with(**expected_kwargs)

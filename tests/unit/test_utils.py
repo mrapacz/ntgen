@@ -15,7 +15,11 @@ class TestUtils:
         return request.param
 
     @pytest.fixture(
-        params=["SamplePascalName123", "sample_snake_case_name_123", "sample-kebab-case-123",]
+        params=[
+            "SamplePascalName123",
+            "sample_snake_case_name_123",
+            "sample-kebab-case-123",
+        ]
     )
     def sample_name(self, request):
         return request.param

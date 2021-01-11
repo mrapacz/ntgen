@@ -16,7 +16,13 @@ def sample_person_nt():
             Attribute(original_name="age", type=int, value=24),
             Attribute(
                 original_name="address",
-                type=NT(attrs=[Attribute("city", str, "Warsaw"), Attribute("street", str, "Biała 13"),], name="address",),
+                type=NT(
+                    attrs=[
+                        Attribute("city", str, "Warsaw"),
+                        Attribute("street", str, "Biała 13"),
+                    ],
+                    name="address",
+                ),
                 value={"city": "Warsaw", "street": "Biała 13"},
             ),
         ],
@@ -26,7 +32,14 @@ def sample_person_nt():
 
 class TestAttribute:
     @pytest.fixture(
-        params=[None, 1, "string", [1, 2, 3], {1: "1"}, pytest.lazy_fixture("sample_person_nt"),]
+        params=[
+            None,
+            1,
+            "string",
+            [1, 2, 3],
+            {1: "1"},
+            pytest.lazy_fixture("sample_person_nt"),
+        ]
     )
     def sample_attribute(self, request, sample_field_name):
         return Attribute(
@@ -36,9 +49,13 @@ class TestAttribute:
         )
 
     def test_repr_field_name(self, sample_attribute):
-        with mock.patch("ntgen.models.normalize_field_name", side_effect=normalize_field_name,) as mock_normalize_field_name:
+        with mock.patch(
+            "ntgen.models.normalize_field_name",
+            side_effect=normalize_field_name,
+        ) as mock_normalize_field_name:
             assert sample_attribute.repr_field_name == normalize_field_name(
-                name=sample_attribute.original_name, leading_undescores_prefix=None,
+                name=sample_attribute.original_name,
+                leading_undescores_prefix=None,
             )
             mock_normalize_field_name.assert_called_once()
 
@@ -49,7 +66,8 @@ class TestAttribute:
     @pytest.fixture(params=[True, False])
     def patch_is_py_37_compatible(self, request):
         with mock.patch(
-            "ntgen.models.IS_PY_37_COMPATIBLE", request.param,
+            "ntgen.models.IS_PY_37_COMPATIBLE",
+            request.param,
         ):
             yield
 
@@ -66,13 +84,22 @@ class TestAttribute:
         indirect=["patch_is_py_37_compatible", "sample_attribute"],
     )
     def test_repr_type_hint(
-        self, patch_is_py_37_compatible, sample_attribute: Attribute, expected_type_hint: str,
+        self,
+        patch_is_py_37_compatible,
+        sample_attribute: Attribute,
+        expected_type_hint: str,
     ):
         assert sample_attribute.repr_type_hint == expected_type_hint
 
     @pytest.mark.parametrize(
         ("sample_attribute", "is_user_defined"),
-        ((1, False), ("string", False), (None, False), ({1: "1"}, False), (pytest.lazy_fixture("sample_person_nt"), True),),
+        (
+            (1, False),
+            ("string", False),
+            (None, False),
+            ({1: "1"}, False),
+            (pytest.lazy_fixture("sample_person_nt"), True),
+        ),
         indirect=["sample_attribute"],
     )
     def test_is_user_defined(self, sample_attribute: Attribute, is_user_defined: str):
@@ -88,7 +115,13 @@ class TestNT:
         assert sample_person_nt.nt_attrs == [
             Attribute(
                 original_name="address",
-                type=NT(attrs=[Attribute("city", str, "Warsaw"), Attribute("street", str, "Biała 13"),], name="address",),
+                type=NT(
+                    attrs=[
+                        Attribute("city", str, "Warsaw"),
+                        Attribute("street", str, "Biała 13"),
+                    ],
+                    name="address",
+                ),
                 value={"city": "Warsaw", "street": "Biała 13"},
             )
         ]
