@@ -17,12 +17,14 @@ def parse_args():
         "-f",
         "--add-from-dict",
         action="store_true",
+        type=bool,
         help="Insert generic methods that will allow for parsing of the analyzed data structures",
     )
     parser.add_argument(
         "-a",
         "--add-as-dict",
         action="store_true",
+        type=bool,
         help="Insert generic methods allowing for dumping the nested NamedTuple hierarchy to a dict",
     )
 
@@ -32,7 +34,7 @@ def parse_args():
         default=None,
         help="Name of the main NamedTuple, if not passed, it will be inferred from the input filename",
     )
-    parser.add_argument("--max-level", default=None, help="Specify the max nesting level of the NamedTuple")
+    parser.add_argument("--max-level", default=None, type=int, help="Specify the max nesting level of the NamedTuple")
 
     return parser.parse_args()
 
