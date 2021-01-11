@@ -5,7 +5,7 @@ from pathlib import Path
 from ntgen import generate_from_dict
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     """Define CLI args for the ntgen entrypoint."""
     parser = argparse.ArgumentParser("ntgen")
 
