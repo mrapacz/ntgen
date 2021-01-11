@@ -7,7 +7,6 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-typed-argument-parser = "^1.6.1"
 pyannotate = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
