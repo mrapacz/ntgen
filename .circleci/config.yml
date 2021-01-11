@@ -1,10 +1,9 @@
 version: 2.1
 
-jobs:
-  base-template: &base_template
-    docker:
-      - image: python:3.8
-    steps: &base_cmds
+commands:
+  setup:
+    description: "Setup poetry and tox"
+    steps:
       - checkout
       - run:
           command: |
@@ -13,7 +12,14 @@ jobs:
             pip install tox
             curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
             source "${HOME}/.profile"
-            make test
+jobs:
+  base-template: &base_template
+    docker:
+      - image: python:3.8
+    steps:
+      - setup
+      - run:
+          command: make test
   build-py37:
     <<: *base_template
     docker:
@@ -22,8 +28,7 @@ jobs:
   build-coverage:
     <<: *base_template
     steps:
-      *base_cmds
-      - <: *base_cmds
+      - setup
       - run:
           command: |
             echo "repo_token: ${COVERALLS_TOKEN}" > .coveralls.yml
