@@ -1,16 +1,18 @@
-version: 2
+version: 2.1
+
 jobs:
   base-template: &base_template
     docker:
       - image: python:3.8
-    working_directory: ~/ntgen
     steps:
       - checkout
       - run:
           command: |
             echo "export PATH=$HOME/.local/bin:$PATH" >> $BASH_ENV
             source $BASH_ENV
-            make dev
+            pip install tox
+            curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+            source "${HOME}/.profile"
             make test
   build-py36:
     <<: *base_template
