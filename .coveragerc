@@ -2,5 +2,6 @@
 source = ntgen
 
 [report]
+omit = */ntgen/__main__.py
 exclude_lines =
     def parse_args
