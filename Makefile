@@ -29,7 +29,7 @@ release: clean
 
 .PHONY: acceptance
 acceptance:
-	tox -e acceptance
+	poetry run tox -e acceptance
 
 .PHONY: clean
 clean:
