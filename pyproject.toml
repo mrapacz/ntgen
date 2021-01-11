@@ -8,13 +8,14 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.6"
 pyannotate = "^1.2.0"
-mypy = "^0.790"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.1"
 ipython = "^7.19.0"
 pre-commit = "^2.9.3"
 pytest-lazy-fixture = "^0.6.3"
+coverage = "^5.3.1"
+mypy = "^0.790"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
