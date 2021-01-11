@@ -31,10 +31,7 @@ jobs:
       - setup
       - run:
           command: |
-            ls ${HOME}/.poetry/bin
             echo "repo_token: ${COVERALLS_TOKEN}" > .coveralls.yml
-            echo "export PATH=$HOME/.local/bin:$PATH" >> $BASH_ENV
-            source $BASH_ENV
             make dev
             make submit_coverage
   build-acceptance:
