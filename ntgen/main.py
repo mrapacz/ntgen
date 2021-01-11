@@ -17,14 +17,12 @@ def parse_args():
         "-f",
         "--add-from-dict",
         action="store_true",
-        default=False,
         help="Insert generic methods that will allow for parsing of the analyzed data structures",
     )
     parser.add_argument(
         "-a",
         "--add-as-dict",
         action="store_true",
-        default=False,
         help="Insert generic methods allowing for dumping the nested NamedTuple hierarchy to a dict",
     )
 
