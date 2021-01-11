@@ -1,6 +1,6 @@
 .PHONY: dev
 dev:
-	pip install -r requirements-dev.txt
+	poetry install
 
 .PHONY: test
 test:
@@ -29,8 +29,8 @@ release: clean
 
 .PHONY: acceptance
 acceptance: clean
-	pip install .
-	ntgen acceptance/apartment.json --out acceptance/apartment_actual.txt
+	poetry install --no-dev
+	poetry run ntgen acceptance/apartment.json --out acceptance/apartment_actual.txt
 	diff acceptance/apartment_actual.txt acceptance/apartment_expected.txt
 
 .PHONY: clean
