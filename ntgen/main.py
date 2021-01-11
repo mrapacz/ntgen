@@ -20,7 +20,7 @@ class ArgumentParser(TypedArgumentParser):
     add_as_dict: bool = False  # Insert generic methods allowing for dumping the nested NamedTuple hierarchy to a dict
     max_level: Optional[int] = None  # Specify the max nesting level of the NamedTuple
 
-    def add_arguments(self) -> None:
+    def configure(self) -> None:
         """Make the 'input' argument positional."""
         self.add_argument("input")
         self.add_argument("-s", "--snake-case", action="store_false")
