@@ -43,7 +43,7 @@ class TestMain:
             "max_level": None,
         }
         with mock.patch(
-            "ntgen.main.ArgumentParser.parse_args",
+            "ntgen.main.parse_args",
             return_value=argparse.Namespace(**{**defaults, **request.param}),
         ):
             yield
