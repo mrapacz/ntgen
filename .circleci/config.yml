@@ -7,7 +7,7 @@ commands:
       - checkout
       - run:
           command: |
-            echo "export PATH=$HOME/.local/bin:$PATH" >> $BASH_ENV
+            echo "export PATH=$HOME/.local/bin:$HOME/.poetry/bin:$PATH" >> $BASH_ENV
             source $BASH_ENV
             pip install tox
             curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
@@ -31,6 +31,7 @@ jobs:
       - setup
       - run:
           command: |
+            ls ${HOME}/.poetry/bin
             echo "repo_token: ${COVERALLS_TOKEN}" > .coveralls.yml
             echo "export PATH=$HOME/.local/bin:$PATH" >> $BASH_ENV
             source $BASH_ENV
