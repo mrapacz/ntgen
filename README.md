@@ -112,7 +112,7 @@ Verify that the latest package version was installed correctly:
 ```python
 >>> import ntgen
 >>> ntgen.__version__
-'0.2.0'
+'0.3.0'
 
 ```
 
