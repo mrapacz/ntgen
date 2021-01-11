@@ -1,0 +1,6 @@
+[run]
+source = ntgen
+
+[report]
+exclude_lines =
+    def parse_args
